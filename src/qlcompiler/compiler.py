@@ -10,5 +10,3 @@ class Compiler:
         """
         Compile function emiting code to the target language.
         """
-
-        raise NotImplementedError
