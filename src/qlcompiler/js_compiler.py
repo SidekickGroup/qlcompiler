@@ -4,8 +4,6 @@ import operator as op
 import ipdb
 
 globals = {
-
-
     op.add: lambda x, y: '{} + {}'.format(x, y),
     op.sub: lambda x, y: '{} - {}'.format(x, y),
     op.mul: lambda x, y: '{} * {}'.format(x, y),
@@ -24,9 +22,29 @@ globals = {
     
 }
 
+consts = {}
+
 python_fn = {
-
-
+    'abs',
+    'cmp',
+    'len',
+    'list',
+    'map',
+    'min',
+    'print',
+    'str',
+    'pow',
+    'ord',
+    'filter',
+    'enumerate',
+    'eval',
+    'getattr',
+    'hex',
+    'float',
+    'dict',
+    'chr',
+    'type',
+    'hash',
 }
 
 
