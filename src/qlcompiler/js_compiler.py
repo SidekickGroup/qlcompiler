@@ -1,8 +1,11 @@
 from compiler import Compiler
 from sidekick import _
 import operator as op
+import ipdb
 
 globals = {
+
+
     op.add: lambda x, y: '{} + {}'.format(x, y),
     op.sub: lambda x, y: '{} - {}'.format(x, y),
     op.mul: lambda x, y: '{} * {}'.format(x, y),
@@ -18,7 +21,14 @@ globals = {
     op.invert: lambda x: '~{}'.format(x),
     op.neg: lambda x: '-{}'.format(x),
     op.pos: lambda x: '+{}'.format(x),
+    
 }
+
+python_fn = {
+
+
+}
+
 
 class JsCompiler(Compiler):
 
@@ -30,8 +40,10 @@ def compile(ql, **kwargs):
     """
     Compiles quick lambda object to Javascript.
     """
+    # ipdb.set_trace()
     types = ['binop', 'singleop', 'call', 'getattr', 'placeholder', 'cte']
     example = _ + 2
+    
     if type(ql) is (type(int()) or type(float())):
       _type = 'cte'
     elif type(ql) is not type(example):
@@ -60,7 +72,9 @@ def compile(ql, **kwargs):
         func = ''
 
     elif _type is 'getattr':
-        func = ''
+        x = str(args[0])
+        y = str(args[1])
+        func = y + '.' + x
 
     elif _type is 'placeholder':
         func = '_'
@@ -70,6 +84,8 @@ def compile(ql, **kwargs):
 
     return func
     #return compiler.compile(**kwargs)
+
+
 
 # class Ast(opt.BinOp(callable, object, object)
 #           | opt.SingleOp(callable, object)
