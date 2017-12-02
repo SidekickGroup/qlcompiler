@@ -29,7 +29,9 @@ def compile(ql, **kwargs):
     """
     types = ['binop', 'singleop', 'call', 'getattr', 'placeholder', 'cte']
     example = _ + 2
-    if type(ql) is not type(example):
+    if type(ql) is (type(int()) or type(float())):
+      _type = 'cte'
+    elif type(ql) is not type(example):
         raise Exception("The object isn't a sidekick placeholder (quick lambda)!")
     else:
         command = 'ql._ast.'
@@ -47,9 +49,23 @@ def compile(ql, **kwargs):
 
     if _type is 'binop':
         func = globals[args[0]](args[1], args[2])
-        print(func)
 
-    return args
+    elif _type is 'singleop':
+        func = ''
+
+    elif _type is 'call':
+        func = ''
+
+    elif _type is 'getattr':
+        func = ''
+
+    elif _type is 'placeholder':
+        func = '_'
+
+    elif _type is 'cte':
+        func = str(float(ql))
+
+    return func
     #return compiler.compile(**kwargs)
 
 # class Ast(opt.BinOp(callable, object, object)
