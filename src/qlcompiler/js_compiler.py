@@ -15,6 +15,9 @@ globals = {
     op.ge: lambda x, y: '{} >= {}'.format(x, y),
     op.mod: lambda x, y: '{} % {}'.format(x, y),
     op.pow: lambda x, y: '{} ** {}'.format(x, y),
+    op.invert: lambda x: '~{}'.format(x),
+    op.neg: lambda x: '-{}'.format(x),
+    op.pos: lambda x: '+{}'.format(x),
 }
 
 class JsCompiler(Compiler):
@@ -51,7 +54,7 @@ def compile(ql, **kwargs):
         func = globals[args[0]](args[1], args[2])
 
     elif _type is 'singleop':
-        func = ''
+        func = globals[args[0]](args[1])
 
     elif _type is 'call':
         func = ''
