@@ -26,7 +26,6 @@ consts = {}
 python_fn = {
     'abs',
     'len',
-    'list',
     'map',
     'min',
     'print',
@@ -36,19 +35,15 @@ python_fn = {
     'filter',
     'enumerate',
     'eval',
-    'getattr',
     'hex',
     'float',
-    'dict',
     'chr',
     'type',
-    'hash',
 }
 
 js_fn = {
     'abs': lambda ql: 'Math.abs({})'.format(ql),
     'len': lambda ql: '{}.length'.format(ql),
-    # 'list':,
     'map': lambda array,function: '{}.map({})'.format(array, function),
     'min': lambda x, y: 'Math.min({}, {})'.format(x,y),
     'print': lambda ql: 'console.log({})'.format(ql),
@@ -57,13 +52,10 @@ js_fn = {
     'filter': lambda array,function: '{}.filter({})'.format(array, function),
     'enumerate': lambda array: '{}.entries()'.format(array),
     'eval': lambda string: 'eval({})'.format(string),
-    # 'getattr':,
     'hex': lambda ql: '{}.toString(16)'.format(ql),
     'float':lambda ql: 'parseFloat({})'.format(ql),
-    # 'dict':,
     'chr': lambda ql: 'String.fromCharCode({})'.format(ql),
     'type': lambda ql: 'typeof({})'.format(ql),
-    # 'hash':,
 }
 
 
