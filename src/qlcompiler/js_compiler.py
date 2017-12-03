@@ -25,7 +25,6 @@ consts = {}
 
 python_fn = {
     'abs',
-    'cmp',
     'len',
     'list',
     'map',
@@ -46,15 +45,27 @@ python_fn = {
     'hash',
 }
 
-js_fn = { 
+js_fn = {
     'abs': lambda ql: 'Math.abs({})'.format(ql),
+    'len': lambda ql: '{}.length'.format(ql),
+    'list':,
+    'map':,
+    'min':,
+    'print': lambda ql: 'console.log({})'.format(ql)',
+    'str': lambda ql: 'String({})'.format(ql),
+    'ord': lambda ql: '{}.charCodeAt()'.format(ql),
+    'filter':,
+    'enumerate':,
+    'eval':,
+    'getattr':,
+    'hex':,
+    'float':,
+    'dict':,
+    'chr': lambda ql: 'String.fromCharCode({})'.format(ql),
+    'type':lambda ql: 'typeof({})'.format(ql),
+    'hash':,
 }
 
-
-python_to_js = {
-    'Math.abs': lambda ql: 'Math.abs({})'.format(ql),
-
-}
 
 class JsCompiler(Compiler):
 
@@ -69,7 +80,7 @@ def compile(ql, **kwargs):
     # ipdb.set_trace()
     types = ['binop', 'singleop', 'call', 'getattr', 'placeholder', 'cte']
     example = _ + 2
-    
+
     if type(ql) is (type(int()) or type(float())):
       _type = 'cte'
     elif type(ql) is not type(example):
@@ -95,12 +106,12 @@ def compile(ql, **kwargs):
         func = globals[args[0]](args[1])
 
     elif _type is 'call':
-        
+
         print(args[0])
         print(args[1])
         print(args[1][1])
         print(args[1][1])
-        
+
         func =  js_fn['abs'](args[0])
 
     elif _type is 'getattr':
