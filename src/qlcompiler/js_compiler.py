@@ -19,7 +19,6 @@ globals = {
     op.invert: lambda x: '~{}'.format(x),
     op.neg: lambda x: '-{}'.format(x),
     op.pos: lambda x: '+{}'.format(x),
-    
 }
 
 consts = {}
@@ -47,6 +46,15 @@ python_fn = {
     'hash',
 }
 
+js_fn = { 
+    'abs': lambda ql: 'Math.abs({})'.format(ql),
+}
+
+
+python_to_js = {
+    'Math.abs': lambda ql: 'Math.abs({})'.format(ql),
+
+}
 
 class JsCompiler(Compiler):
 
@@ -87,7 +95,13 @@ def compile(ql, **kwargs):
         func = globals[args[0]](args[1])
 
     elif _type is 'call':
-        func = ''
+        
+        print(args[0])
+        print(args[1])
+        print(args[1][1])
+        print(args[1][1])
+        
+        func =  js_fn['abs'](args[0])
 
     elif _type is 'getattr':
         x = str(args[0])
@@ -102,6 +116,11 @@ def compile(ql, **kwargs):
 
     return func
     #return compiler.compile(**kwargs)
+
+def call_js_fn():
+
+    return 10
+
 
 
 
