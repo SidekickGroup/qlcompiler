@@ -1,7 +1,6 @@
-from compiler import Compiler
+from qlcompiler.compiler import Compiler
 from sidekick import _
 import operator as op
-import ipdb
 
 globals = {
     op.add: lambda x, y: '{} + {}'.format(x, y),
@@ -20,8 +19,6 @@ globals = {
     op.neg: lambda x: '-{}'.format(x),
     op.pos: lambda x: '+{}'.format(x),
 }
-
-consts = {}
 
 python_fn = {
     'abs',
@@ -69,7 +66,7 @@ def compile(ql, **kwargs):
     """
     Compiles quick lambda object to Javascript.
     """
-    # ipdb.set_trace()
+
     types = ['binop', 'singleop', 'call', 'getattr', 'placeholder', 'cte']
     example = _ + 2
 
@@ -117,11 +114,7 @@ def compile(ql, **kwargs):
     elif _type is 'cte':
         func = str(float(ql))
 
+    result = {'function': func, 'language': 'JS'}
+    func = Compiler.compile(result)
+
     return func
-    #return compiler.compile(**kwargs)
-
-def call_js_fn():
-
-    return 10
-
-

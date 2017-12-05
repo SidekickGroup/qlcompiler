@@ -1,4 +1,4 @@
-from .compiler import Compiler
+from qlcompiler.compiler import Compiler
 
 
 class CCompiler(Compiler):
@@ -12,5 +12,4 @@ def compile(ql, **kwargs):
     Compiles quick lambda object to C.
     """
 
-    compiler = CCompiler(ql)
-    return compiler.compile(**kwargs)
+    return Compiler.compile(**kwargs)

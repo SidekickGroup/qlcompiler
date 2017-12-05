@@ -10,3 +10,14 @@ class Compiler:
         """
         Compile function emiting code to the target language.
         """
+
+        js_frame = '''
+        function (_) {
+            return %s;
+        }
+        '''
+
+        if self['language'] == 'JS':
+            return js_frame % self['function']
+        else:
+            raise NotImplementedError
