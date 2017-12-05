@@ -109,7 +109,7 @@ def compile(ql, **kwargs):
     elif _type is 'getattr':
         x = str(args[0])
         y = str(args[1])
-        func = y + '.' + x
+        func = '{}.getAttribute("{}")'.format(y, x)
 
     elif _type is 'placeholder':
         func = '_'
@@ -125,14 +125,3 @@ def call_js_fn():
     return 10
 
 
-
-
-# class Ast(opt.BinOp(callable, object, object)
-#           | opt.SingleOp(callable, object)
-#           | opt.Call(object, tuple, dict)
-#           | opt.GetAttr(object, str)
-#           | opt.Placeholder(int)
-#           | opt.Cte(object)):
-#     """
-#     AST node for a placeholder expression.
-#     """
