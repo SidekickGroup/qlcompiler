@@ -95,13 +95,22 @@ def compile(ql, **kwargs):
         func = globals[args[0]](args[1])
 
     elif _type is 'call':
+        plc, cargs, ckwargs = '', '', ''
 
-        print(args[0])
-        print(args[1])
-        print(args[1][1])
-        print(args[1][1])
+        for index, arg in enumerate(args):
+            if index == 0:
+                plc = str(arg)
+            elif index == 1:
+                cargs = str(arg)
+            elif index == 2:
+                ckwargs = str(arg)
 
-        func =  js_fn['abs'](args[0])
+
+        func = '''
+        function {}(*{}, **{}) {}
+            alert({}, {});
+        {}'''
+        func = func.format(plc, cargs, ckwargs, '{', cargs, ckwargs, '}')
 
     elif _type is 'getattr':
         x = str(args[0])
@@ -114,7 +123,7 @@ def compile(ql, **kwargs):
     elif _type is 'cte':
         func = str(float(ql))
 
-    result = {'function': func, 'language': 'JS'}
+    result = {'function': func, 'language': 'JS', 'type': _type}
     func = Compiler.compile(result)
 
     return func
